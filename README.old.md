@@ -1,4 +1,4 @@
-# WTWR (What to Wear?)
+# Project 10: se_project_react
 
 ## About the project
 

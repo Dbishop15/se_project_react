@@ -1,0 +1,24 @@
+.weather {
+  position: relative;
+  border-radius: 12px;
+  color: #ffffff;
+}
+.weather__temp {
+  position: absolute;
+  top: 20%;
+  left: 16px;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 40px;
+}
+.weather__image {
+  width: 100%;
+}
+@media screen and (max-width: 470px) {
+  .weather__temp {
+    top: 10%;
+    font-size: 18px;
+    line-height: 20px;
+  }
+}

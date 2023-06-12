@@ -1,0 +1,8 @@
+.footer__info {
+  display: flex;
+  justify-content: space-between;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+}
