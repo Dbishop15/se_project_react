@@ -88,9 +88,9 @@ function App() {
         const location = data.name;
         setLocation(location);
 
-        // api.getItems().then((items) => {
-        //   setClothingItems(items);
-        // });
+        api.getItems().then((items) => {
+          setClothingItems(items);
+        });
       })
       .catch((error) => {
         console.log(error);
@@ -109,7 +109,7 @@ function App() {
             currentLocation={location}
           />
           <Switch>
-            <Route exact path="/">
+            <Route path="/">
               <Main
                 weatherTemp={temp}
                 onSelectCard={handleSelectedCard}

@@ -18,7 +18,7 @@ export const currentDate = new Date().toLocaleString("default", {
   month: "long",
   day: "numeric",
 });
-// export const baseUrl = "http://localhost:3001";
+
 export const baseUrl =
   "https://my-json-server.typicode.com/Dbishop15/se_project_react";
 
