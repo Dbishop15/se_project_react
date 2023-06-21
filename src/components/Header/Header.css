@@ -52,6 +52,8 @@
 }
 .header__nav-link {
   cursor: pointer;
+  text-decoration: none;
+  color: black;
 }
 .header__nav-link:hover {
   opacity: 0.5;

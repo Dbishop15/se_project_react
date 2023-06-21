@@ -1,0 +1,10 @@
+.profile {
+  display: flex;
+}
+.profile__sidebar {
+  width: 229px;
+  height: 56px;
+}
+.profile__clothes-section {
+  margin-left: 116px;
+}

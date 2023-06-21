@@ -1,0 +1,25 @@
+.clothes {
+  display: flex;
+  height: 56px;
+  gap: 20px;
+  align-items: center;
+}
+.clothes__title {
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 100%;
+}
+.clothes__add-btn {
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 100%;
+  background: none;
+  border: none;
+  color: rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+}
+.clothes__add-btn:hover {
+  color: rgba(0, 0, 0, 0.8);
+}

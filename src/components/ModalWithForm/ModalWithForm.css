@@ -99,7 +99,7 @@
   height: 36px;
   margin-top: 26px;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: #000000;
   border-radius: 4px;
   font-family: "Cabinet Grotesk", Arial, sans-serif;
   font-weight: 700;
@@ -111,6 +111,7 @@
 }
 .modal__submit-btn:hover {
   opacity: 0.6;
+  background-color: rgba(0, 0, 0, 0.6);
   transition: all 0.3s ease-out;
 }
 @media screen and (max-width: 470px) {

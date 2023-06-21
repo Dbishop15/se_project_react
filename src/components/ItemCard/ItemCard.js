@@ -1,3 +1,4 @@
+import React from "react";
 import "./ItemCard.css";
 
 const ItemCard = ({ item, onSelectCard }) => {
@@ -8,7 +9,7 @@ const ItemCard = ({ item, onSelectCard }) => {
           <p className="card__name">{item.name}</p>
         </div>
         <img
-          src={item.link}
+          src={item.link || item.imageUrl}
           className="card__image"
           alt={item.name}
           onClick={() => onSelectCard(item)}

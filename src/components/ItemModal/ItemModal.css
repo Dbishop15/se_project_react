@@ -12,15 +12,23 @@
   border-top-left-radius: inherit;
   border-top-right-radius: inherit;
 }
+.modal__image-container {
+  display: flex;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+}
 .modal__image-info {
   display: flex;
   flex-direction: column;
   gap: 12px;
   margin: 20px auto 32px 32px;
-  font-family: "Cabinet Grotesk", Arial, sans-serif;
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 24px;
+}
+.modal__delete {
+  margin: 20px 32px;
+  cursor: pointer;
+  color: red;
 }
 @media screen and (max-width: 470px) {
   .modal__image-info {

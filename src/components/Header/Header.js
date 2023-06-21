@@ -2,6 +2,9 @@ import "./Header.css";
 import avatarDefault from "../../images/avatarDefault.png";
 import navlink from "../../images/navlink.svg";
 import header__logo from "../../images/header__logo.svg";
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
+import { Link } from "react-router-dom";
+
 import { currentDate } from "../../utils/constants";
 
 const Header = ({ onCreateModal, currentLocation }) => {
@@ -10,15 +13,18 @@ const Header = ({ onCreateModal, currentLocation }) => {
     <header className="header">
       <div className="header__container">
         <div className="header__logo-container">
-          <div className="header__logo">
+          <Link to="/" className="header__logo">
             <img src={header__logo} alt="logo" />
-          </div>
+          </Link>
           <div className="header__date">
             {currentDate}, {currentLocation}
           </div>
         </div>
         <div className="header__nav">
           <ul className="header__nav-container">
+            <li>
+              <ToggleSwitch />
+            </li>
             <li>
               <button
                 type="text"
@@ -29,7 +35,9 @@ const Header = ({ onCreateModal, currentLocation }) => {
               </button>
             </li>
             <li>
-              <div className="header__nav-link">{username}</div>
+              <Link to="/profile" className="header__nav-link">
+                {username}
+              </Link>
             </li>
             <li>
               <img
