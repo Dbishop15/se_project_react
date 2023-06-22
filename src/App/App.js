@@ -39,10 +39,11 @@ function App() {
   };
 
   const handleAddItemSubmit = ({ name, imageUrl, weather }) => {
-    const item = { name: name, imageUrl: imageUrl, weather: weather, id: 99 };
+    const item = { name: name, imageUrl: imageUrl, weather: weather };
     api
       .addItems(item)
       .then((item) => {
+        console.log(item);
         setClothingItems([item, ...clothingItems]);
         handleCloseModal();
       })
@@ -85,6 +86,7 @@ function App() {
 
         api.getItems().then((items) => {
           setClothingItems(items);
+          console.log(items);
         });
       })
       .catch((error) => {

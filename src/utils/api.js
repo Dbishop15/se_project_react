@@ -37,12 +37,3 @@ export const deleteItems = (card) => {
     },
   }).then(checkResponse);
 };
-
-// export const deleteItems = (id) => {
-//   return fetch(`${baseUrl}/items/${id}`, {
-//     method: "DELETE",
-//     Headers: {
-//       "Content-Type": "application/json",
-//     },
-//   }).then(checkResponse);
-// };

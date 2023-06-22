@@ -15,7 +15,7 @@ const Profile = ({ items, openModal, onSelectCard }) => {
         <div className="card__items">
           {items.map((item) => (
             <ItemCard
-              key={item?._id || item?.id}
+              key={item._id || item.id}
               item={item}
               onSelectCard={onSelectCard}
             />

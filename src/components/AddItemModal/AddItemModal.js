@@ -45,8 +45,11 @@ const AddItemModal = ({ isOpen, onAddItem, handleCloseModal }) => {
       isOpen={isOpen}
       onSubmit={handleSubmit}
     >
-      <label className="modal__label">Name</label>
+      <label className="modal__label" id="name-label">
+        Name
+      </label>
       <input
+        value={name}
         type="text"
         name="name"
         id="input-name"
@@ -54,13 +57,13 @@ const AddItemModal = ({ isOpen, onAddItem, handleCloseModal }) => {
         placeholder="Name"
         minLength="1"
         maxLength="30"
-        value={name}
         onChange={handleNameChange}
-        required
       />
       <span className="modal__error" id="place-name-error"></span>
 
-      <label className="modal__label">Image</label>
+      <label className="modal__label" id="image-label">
+        Image
+      </label>
       <input
         type="url"
         name="link"
@@ -69,7 +72,6 @@ const AddItemModal = ({ isOpen, onAddItem, handleCloseModal }) => {
         placeholder="Image URL"
         value={imageUrl}
         onChange={handleImageChange}
-        required
       />
       <span className="modal__error" id="place-link-error"></span>
       <p className="modal__subtitle">Select the weather tyep:</p>
