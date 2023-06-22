@@ -6,7 +6,7 @@ import ItemCard from "../ItemCard/ItemCard";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import { temperature } from "../../utils/weatherApi";
 
-function Main({ weatherTemp, onSelectCard, clothingItems }) {
+function Main({ weatherTemp, onSelectCard, clothingItems, onDelete }) {
   // const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   // console.log(currentTemperatureUnit);
   // const temp = weatherTemp?.temperature?.[currentTemperatureUnit] || 999;
@@ -48,13 +48,10 @@ function Main({ weatherTemp, onSelectCard, clothingItems }) {
         <div className="main__items">
           {filteredCards.map((item) => (
             <ItemCard
+              key={item?._id || item?.id}
               item={item}
               onSelectCard={onSelectCard}
-              key={item?._id || item?.id}
-              // id={item.id}
-              // link={item.link}
-              // name={item.name}
-              // weather={item.weather}
+              onDelete={onDelete}
             />
           ))}
         </div>

@@ -38,8 +38,8 @@ function App() {
     if (currentTemperatureUnit === "F") setCurrentTemperatureUnit("C");
   };
 
-  const handleAddItemSubmit = ({ name, link, weatherType }) => {
-    const item = { name, imageUrl: link, weather: weatherType };
+  const handleAddItemSubmit = ({ name, imageUrl, weather }) => {
+    const item = { name: name, imageUrl: imageUrl, weather: weather, id: 99 };
     api
       .addItems(item)
       .then((item) => {
@@ -56,7 +56,7 @@ function App() {
     api
       .deleteItems(id)
       .then(() => {
-        const filteredCards = clothingItems.filter((card) => card.id !== id);
+        const filteredCards = clothingItems.filter((card) => card._id !== id);
         setClothingItems(filteredCards);
         handleCloseModal();
       })
@@ -92,7 +92,6 @@ function App() {
       });
   }, []);
 
-  // console.log(currentTemperatureUnit);
   return (
     <BrowserRouter>
       <div className="page__wrapper">
@@ -109,6 +108,7 @@ function App() {
                 weatherTemp={temp}
                 onSelectCard={handleSelectedCard}
                 clothingItems={clothingItems}
+                onDelete={handleDeleteItem}
               />
             </Route>
             <Route path="/profile">
@@ -125,13 +125,14 @@ function App() {
               handleCloseModal={handleCloseModal}
               isOpen={handleCreateModal}
               onAddItem={handleAddItemSubmit}
+              onSelectCard={handleSelectedCard}
+              onClose={handleCloseModal}
             />
           )}
 
           {activeModal === "preview" && (
             <ItemModal
               name="itemPreview"
-              item={selectedCard}
               selectedCard={selectedCard}
               onClose={handleCloseModal}
               onDelete={handleDeleteItem}

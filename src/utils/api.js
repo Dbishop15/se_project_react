@@ -1,9 +1,5 @@
 import { baseUrl } from "./constants";
 
-// GET https://localhost:3001/items
-// POST https://localhost:3001/items
-// DELETE https://localhost:3001/items/:id
-
 function checkResponse(res) {
   if (res.ok) {
     return res.json();

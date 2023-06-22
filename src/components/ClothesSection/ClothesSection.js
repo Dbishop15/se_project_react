@@ -8,15 +8,6 @@ const ClothesSection = ({ openModal }) => {
       <button type="text" className="clothes__add-btn" onClick={openModal}>
         + Add new
       </button>
-      {/* <div className="card__items">
-        {cards.map((card) => (
-          <ItemCard
-            key={card?._id || card?.id}
-            item={card}
-            onSelectCard={onCardClick}
-          />
-        ))}
-      </div> */}
     </div>
   );
 };

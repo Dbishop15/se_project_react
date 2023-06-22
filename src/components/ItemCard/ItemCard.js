@@ -7,7 +7,7 @@ const ItemCard = ({ item, onSelectCard }) => {
   };
 
   return (
-    <div className="card__item">
+    <div key={item.id} className="card__item">
       <div className="card__item-info">
         <div>
           <p className="card__name">{item.name}</p>

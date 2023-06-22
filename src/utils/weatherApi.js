@@ -13,18 +13,6 @@ const getForecastWeather = () => {
   console.log(weatherApi);
   return weatherApi;
 };
-// const filterDataFromWeatherAPI = (data) => {
-//   const main = data.main;
-//   const temperature = main && main.temp;
-//   const weather = {
-//     temperature: {
-//       F: ` ${Math.round(temperature)}°F`,
-//       C: ` ${Math.round(((temperature - 32) * 5) / 9)}°C`,
-//     },
-//   };
-//   console.log(weather);
-//   return weather;
-// };
 
 const filterDataFromWeatherAPI = (data) => {
   const main = data.main;
