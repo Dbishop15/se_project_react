@@ -11,7 +11,6 @@ import {
   getForecastWeather,
 } from "../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext";
-// import { defaultClothingItems } from "../utils/clothingItems";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import AddItemModal from "../components/AddItemModal/AddItemModal";
 import * as api from "../utils/api";
@@ -43,8 +42,7 @@ function App() {
     const item = { name, imageUrl: link, weather: weatherType };
     api
       .addItems(item)
-      .then((res) => {
-        console.log(res);
+      .then((item) => {
         setClothingItems([item, ...clothingItems]);
         handleCloseModal();
       })
@@ -53,15 +51,12 @@ function App() {
       });
   };
 
-  const handleDeleteItem = (item) => {
-    console.log(item);
+  const handleDeleteItem = (id) => {
+    console.log(id);
     api
-      .deleteItems(item.id)
+      .deleteItems(id)
       .then(() => {
-        const filteredCards = clothingItems.filter(
-          (card) => card.id !== item.id
-        );
-        console.log(filteredCards);
+        const filteredCards = clothingItems.filter((card) => card.id !== id);
         setClothingItems(filteredCards);
         handleCloseModal();
       })
@@ -109,7 +104,7 @@ function App() {
             currentLocation={location}
           />
           <Switch>
-            <Route path="/">
+            <Route exact path="/">
               <Main
                 weatherTemp={temp}
                 onSelectCard={handleSelectedCard}
@@ -136,6 +131,7 @@ function App() {
           {activeModal === "preview" && (
             <ItemModal
               name="itemPreview"
+              item={selectedCard}
               selectedCard={selectedCard}
               onClose={handleCloseModal}
               onDelete={handleDeleteItem}

@@ -2,6 +2,10 @@ import React from "react";
 import "./ItemCard.css";
 
 const ItemCard = ({ item, onSelectCard }) => {
+  const handleCardClick = () => {
+    onSelectCard(item);
+  };
+
   return (
     <div className="card__item">
       <div className="card__item-info">
@@ -12,7 +16,7 @@ const ItemCard = ({ item, onSelectCard }) => {
           src={item.link || item.imageUrl}
           className="card__image"
           alt={item.name}
-          onClick={() => onSelectCard(item)}
+          onClick={handleCardClick}
         />
       </div>
     </div>

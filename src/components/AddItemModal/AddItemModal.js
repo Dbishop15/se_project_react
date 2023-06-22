@@ -4,8 +4,8 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 // onAddItem refers to handleAddItemSubmit, which is declared in App.js
 const AddItemModal = ({ isOpen, onAddItem, handleCloseModal }) => {
   const [name, setName] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
-  const [weather, setWeather] = useState("");
+  const [link, setLink] = useState("");
+  const [weatherType, setWeatherType] = useState("");
 
   // declare state for each input field
 
@@ -16,21 +16,25 @@ const AddItemModal = ({ isOpen, onAddItem, handleCloseModal }) => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    onAddItem({ name: name, imageUrl: imageUrl, weather: weather });
+    onAddItem({ name, link, weatherType });
   }
-  function handleImageUrl(e) {
+  function handleName(e) {
     e.preventDefault();
-    setImageUrl(e.target.value);
+    setName(e.target.value);
   }
-  function handleWeather(e) {
+  function handleLink(e) {
     e.preventDefault();
-    setWeather(e.target.value);
+    setLink(e.target.value);
+  }
+  function handleWeatherType(e) {
+    e.preventDefault();
+    setWeatherType(e.target.value);
   }
   useEffect(() => {
     if (isOpen) {
       setName("");
-      setImageUrl("");
-      setWeather("");
+      setLink("");
+      setWeatherType("");
     }
   }, [isOpen]);
 
@@ -46,15 +50,13 @@ const AddItemModal = ({ isOpen, onAddItem, handleCloseModal }) => {
       <input
         type="text"
         name="name"
-        id="input-name"
+        // id="input-name"
         className="modal__input modal__input_type_card-name"
         placeholder="Name"
         minLength="1"
         maxLength="30"
         value={name}
-        onChange={(e) => {
-          setName(e.target.value);
-        }}
+        onChange={handleName}
         required
       />
       <span className="modal__error" id="place-name-error"></span>
@@ -63,11 +65,11 @@ const AddItemModal = ({ isOpen, onAddItem, handleCloseModal }) => {
       <input
         type="url"
         name="imageUrl"
-        id="input_imageUrl"
+        // id="input_imageUrl"
         className="modal__input modal__input_type_card-link"
         placeholder="Image URL"
-        value={imageUrl}
-        onChange={handleImageUrl}
+        value={link}
+        onChange={handleLink}
         required
       />
       <span className="modal__error" id="place-link-error"></span>
@@ -79,11 +81,9 @@ const AddItemModal = ({ isOpen, onAddItem, handleCloseModal }) => {
             id="hot"
             name="weatherType"
             value="hot"
-            onChange={handleWeather}
+            onChange={handleWeatherType}
           />
-          <label className="modal__label_radio" htmlFor="hot">
-            Hot
-          </label>
+          <label className="modal__label_radio">Hot</label>
         </div>
       </div>
       <div className="modal__input modal__input_type_radio">
@@ -93,11 +93,9 @@ const AddItemModal = ({ isOpen, onAddItem, handleCloseModal }) => {
             id="warm"
             name="weatherType"
             value="warm"
-            onChange={handleWeather}
+            onChange={handleWeatherType}
           />
-          <label className="modal__label_radio" htmlFor="warm">
-            Warm
-          </label>
+          <label className="modal__label_radio">Warm</label>
         </div>
       </div>
       <div className="modal__input modal__input_type_radio">
@@ -107,11 +105,9 @@ const AddItemModal = ({ isOpen, onAddItem, handleCloseModal }) => {
             id="cold"
             name="weatherType"
             value="cold"
-            onChange={handleWeather}
+            onChange={handleWeatherType}
           />
-          <label className="modal__label_radio" htmlFor="cold">
-            Cold
-          </label>
+          <label className="modal__label_radio">Cold</label>
         </div>
       </div>
     </ModalWithForm>

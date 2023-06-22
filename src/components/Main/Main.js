@@ -50,11 +50,11 @@ function Main({ weatherTemp, onSelectCard, clothingItems }) {
             <ItemCard
               item={item}
               onSelectCard={onSelectCard}
-              key={item.id}
-              id={item.id}
-              link={item.link}
-              name={item.name}
-              weather={item.weather}
+              key={item?._id || item?.id}
+              // id={item.id}
+              // link={item.link}
+              // name={item.name}
+              // weather={item.weather}
             />
           ))}
         </div>
