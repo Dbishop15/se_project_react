@@ -1,32 +1,32 @@
 import React, { useEffect, useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-// onAddItem refers to handleAddItemSubmit, which is declared in App.js
 const AddItemModal = ({ isOpen, onAddItem, handleCloseModal }) => {
   const [name, setName] = useState("");
   const handleNameChange = (e) => {
+    console.log(e.target.value);
     setName(e.target.value);
   };
 
   const [imageUrl, setImageUrl] = useState("");
   const handleImageChange = (e) => {
+    console.log(e.target.value);
     setImageUrl(e.target.value);
   };
   const [weather, setWeather] = useState("");
   const handleWeatherChange = (e) => {
+    console.log(e.target.value);
     setWeather(e.target.value);
   };
 
-  // declare state for each input field
-
-  // use a useEffect hook to reset the input field state to empty strings when
-  // the modal is opened
-
-  // create onChange handlers corresponding to each state variable
-
   function handleSubmit(evt) {
     evt.preventDefault();
-    onAddItem({ name, imageUrl, weather });
+    const card = {
+      name: name,
+      imageUrl: imageUrl,
+      weather: weather,
+    };
+    onAddItem(card);
   }
 
   useEffect(() => {
@@ -58,6 +58,7 @@ const AddItemModal = ({ isOpen, onAddItem, handleCloseModal }) => {
         minLength="1"
         maxLength="30"
         onChange={handleNameChange}
+        required
       />
       <span className="modal__error" id="place-name-error"></span>
 
@@ -72,6 +73,7 @@ const AddItemModal = ({ isOpen, onAddItem, handleCloseModal }) => {
         placeholder="Image URL"
         value={imageUrl}
         onChange={handleImageChange}
+        required
       />
       <span className="modal__error" id="place-link-error"></span>
       <p className="modal__subtitle">Select the weather tyep:</p>

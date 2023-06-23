@@ -47,12 +47,7 @@ function Main({ weatherTemp, onSelectCard, clothingItems, onDelete }) {
         Today is {currentTempString}/ You may want to wear:
         <div className="main__items">
           {filteredCards.map((item) => (
-            <ItemCard
-              key={item?._id || item?.id}
-              item={item}
-              onSelectCard={onSelectCard}
-              onDelete={onDelete}
-            />
+            <ItemCard key={item.id} item={item} onSelectCard={onSelectCard} />
           ))}
         </div>
       </section>

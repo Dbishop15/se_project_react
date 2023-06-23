@@ -39,12 +39,11 @@ function App() {
   };
 
   const handleAddItemSubmit = ({ name, imageUrl, weather }) => {
-    const item = { name: name, imageUrl: imageUrl, weather: weather };
     api
-      .addItems(item)
+      .addItems({ name: name, imageUrl: imageUrl, weather: weather, id: 99 })
       .then((item) => {
-        console.log(item);
-        setClothingItems([item, ...clothingItems]);
+        const card = { ...item, name, imageUrl, weather };
+        setClothingItems([card, ...clothingItems]);
         handleCloseModal();
       })
       .catch((error) => {
@@ -52,12 +51,14 @@ function App() {
       });
   };
 
-  const handleDeleteItem = (id) => {
-    console.log(id);
+  const handleDeleteItem = (deleteItem) => {
+    console.log(deleteItem);
     api
-      .deleteItems(id)
+      .deleteItems(deleteItem.id)
       .then(() => {
-        const filteredCards = clothingItems.filter((card) => card._id !== id);
+        const filteredCards = clothingItems.filter(
+          (card) => deleteItem.id !== card.id
+        );
         setClothingItems(filteredCards);
         handleCloseModal();
       })
