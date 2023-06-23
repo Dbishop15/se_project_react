@@ -19,8 +19,8 @@ const filterDataFromWeatherAPI = (data) => {
   const temperature = main && main.temp;
   return Math.ceil(temperature);
 };
-const temperature = (temp) => ({
+export const temperature = (temp) => ({
   F: ` ${Math.round(temp)}°F`,
   C: ` ${Math.round(((temp - 32) * 5) / 9)}°C`,
 });
-export { getForecastWeather, filterDataFromWeatherAPI, temperature };
+export { getForecastWeather, filterDataFromWeatherAPI };
