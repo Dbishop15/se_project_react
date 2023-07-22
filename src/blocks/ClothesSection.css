@@ -1,0 +1,35 @@
+.clothes {
+  display: block;
+}
+.clothes__info {
+  display: flex;
+  height: 56px;
+}
+.clothes__title {
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24.8px;
+  margin-top: 15px;
+  color: rgba(0, 0, 0, 1);
+}
+.clothes__add-btn {
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 100%;
+  margin-left: 15px;
+  background: none;
+  border: none;
+  color: rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+}
+.clothes__add-btn:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+.clothes__items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 15px;
+}
