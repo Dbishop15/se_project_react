@@ -21,7 +21,6 @@ function Main({ weatherTemp, onSelectCard, clothingItems, onCardLike }) {
   const weatherType = getWeatherType();
   const currentTemp = temperature(weatherTemp);
   const currentTempString = currentTemp[currentTemperatureUnit];
-  console.log(temperature);
 
   const filteredCards = clothingItems.filter((item) => {
     return item?.weather.toLowerCase() === weatherType;

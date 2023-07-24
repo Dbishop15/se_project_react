@@ -9,7 +9,7 @@ const Header = ({
   currentLocation,
   onRegisterButton,
   onLoginButton,
-  loggedIn,
+  isLoggedIn,
   currentUser,
 }) => {
   const { name, avatar } = currentUser;
@@ -58,7 +58,7 @@ const Header = ({
           type="button"
           onClick={onLoginButton}
         >
-          Login
+          Log In
         </button>
       </>
     );
@@ -76,7 +76,7 @@ const Header = ({
         </div>
         <div className="header__nav">
           <ToggleSwitch />
-          {!loggedIn
+          {!isLoggedIn
             ? renderUnauthenticateContent()
             : renderAuthenticateContent()}
         </div>

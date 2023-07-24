@@ -11,12 +11,10 @@ const LoginModal = ({
 }) => {
   const [email, setEmail] = useState("");
   const handleEmailChange = (e) => {
-    console.log(e.target.value);
     setEmail(e.target.value);
   };
   const [password, setPassword] = useState("");
   const handlePasswordChange = (e) => {
-    console.log(e.target.value);
     setPassword(e.target.value);
   };
 

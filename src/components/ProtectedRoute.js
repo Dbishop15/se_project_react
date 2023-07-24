@@ -1,12 +1,12 @@
-import { useContext } from "react";
+// import { useContext } from "react";
 import React from "react";
 import { Redirect, Route } from "react-router-dom";
-import CurrentUserContext from "../contexts/CurrentUserContext";
+// import CurrentUserContext from "../contexts/CurrentUserContext";
 
-function ProtectedRoute({ children, ...props }) {
-  const { loggedIn } = useContext(CurrentUserContext);
+function ProtectedRoute({ children, isLoggedIn, ...props }) {
+  // const { isLoggedIn } = useContext(CurrentUserContext);
   return (
-    <Route {...props}>{loggedIn ? children : <Redirect to={"/"} />}</Route>
+    <Route {...props}>{isLoggedIn ? children : <Redirect to={"/"} />}</Route>
   );
 }
 export default ProtectedRoute;

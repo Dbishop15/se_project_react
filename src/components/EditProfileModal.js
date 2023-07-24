@@ -11,12 +11,10 @@ const EditProfileModal = ({
   const { currentUser } = useContext(CurrentUserContext);
   const [name, setName] = useState("");
   const handleNameChange = (e) => {
-    console.log(e.target.value);
     setName(e.target.value);
   };
   const [avatar, setAvatar] = useState("");
   const handleAvatarChange = (e) => {
-    console.log(e.target.value);
     setAvatar(e.target.value);
   };
 

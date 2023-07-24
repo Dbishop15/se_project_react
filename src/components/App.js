@@ -27,7 +27,7 @@ function App() {
   const [location, setLocation] = useState("");
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [token, setToken] = useState("");
   const [noAvatar, setNoAvatar] = useState("");
@@ -67,15 +67,15 @@ function App() {
         },
         token
       )
-      .then((item) => {
-        const card = { ...item, name, imageUrl, weather };
-        setClothingItems([card, ...clothingItems]);
+      .then((res) => {
+        setClothingItems([res.data, ...clothingItems]);
         handleCloseModal();
       })
       .catch((err) => {
         console.log(err);
       });
   };
+
   const handleLikeClick = (itemId, isLiked) => {
     if (!isLiked) {
       api
@@ -123,8 +123,11 @@ function App() {
       .signUp({ email, password, name, avatar })
       .then((res) => {
         if (res) {
+          setCurrentUser(res.data);
           handleSignIn({ email, password });
+          setCurrentUser({ name, avatar });
           handleCloseModal();
+          setIsLoggedIn(true);
         }
       })
       .catch((err) => console.log(err));
@@ -141,26 +144,31 @@ function App() {
       })
       .then((res) => {
         const data = res.data;
-        setLoggedIn(true);
         setCurrentUser(data);
         setToken(data.token);
         handleCloseModal();
-        history.push("/profile");
         setNoAvatar(handleNoAvatar(data.name));
-        console.log(loggedIn);
+        setIsLoggedIn(true);
+        history.push("/profile");
+        console.log(isLoggedIn);
       })
       .catch((err) => console.log(err));
   };
   const handleSignOut = () => {
-    localStorage.clear();
-    setLoggedIn(false);
+    localStorage.removeItem("jwt");
+    setCurrentUser("");
+    setIsLoggedIn(false);
+    setToken("");
+    history.push("/");
+    // localStorage.clear();
+    // setLoggedIn(false);
   };
   const handleEditProfile = ({ name, avatar }) => {
     api
       .updateUser(token, { name, avatar })
       .then(() => {
         handleCloseModal();
-        setCurrentUser({ name, avatar });
+        setCurrentUser({ ...currentUser, name, avatar });
       })
       .catch((err) => console.log(err));
   };
@@ -198,7 +206,6 @@ function App() {
         setLocation(location);
         api.getItems().then((items) => {
           setClothingItems(items);
-          console.log(items);
         });
       })
       .catch((err) => {
@@ -207,28 +214,24 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const tokenCheck = () => {
-      const jwt = localStorage.getItem("jwt");
-      if (jwt) {
-        auth
-          .checkToken(jwt)
-          .then((res) => {
-            const { name, avatar, _id } = res.data;
-            setCurrentUser({ name, avatar, _id });
-            setToken(jwt);
-            setLoggedIn(true);
-            setNoAvatar(handleNoAvatar(res.data.name));
-          })
-          .catch((err) => {
-            console.error(err);
-          });
-      }
-    };
-    tokenCheck();
-  }, []);
+    const jwt = localStorage.getItem("jwt");
+    if (jwt) {
+      auth
+        .checkToken(jwt)
+        .then((res) => {
+          setCurrentUser(res.data);
+          setToken(jwt);
+          setIsLoggedIn(true);
+          setNoAvatar(handleNoAvatar(res.data.name));
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  }, [token]);
 
   return (
-    <CurrentUserContext.Provider value={{ currentUser, loggedIn, noAvatar }}>
+    <CurrentUserContext.Provider value={{ currentUser, isLoggedIn, noAvatar }}>
       <div className="page__wrapper">
         <CurrentTemperatureUnitContext.Provider
           value={{ currentTemperatureUnit, handleToggleSwitchChange }}
@@ -238,7 +241,7 @@ function App() {
             onRegisterButton={handleRegisterModal}
             onLoginButton={handleLoginModal}
             currentLocation={location}
-            loggedIn={loggedIn}
+            isLoggedIn={isLoggedIn}
             currentUser={currentUser}
           />
           <Route exact path="/">
@@ -247,7 +250,6 @@ function App() {
               onSelectCard={handleSelectedCard}
               clothingItems={clothingItems}
               onCardLike={handleLikeClick}
-              loggedIn={loggedIn}
             />
           </Route>
           <Route path="/create">
@@ -263,7 +265,7 @@ function App() {
               onSubmit={handleSignIn}
             />
           </Route>
-          <ProtectedRoute path="/profile" loggedIn={loggedIn}>
+          <ProtectedRoute path="/profile" isLoggedIn={isLoggedIn}>
             <Profile
               items={clothingItems}
               onSelectCard={handleSelectedCard}
@@ -272,7 +274,7 @@ function App() {
               currentUser={currentUser}
               onSignout={handleSignOut}
               onCardLike={handleLikeClick}
-              loggedIn={loggedIn}
+              isLoggedIn={isLoggedIn}
             />
           </ProtectedRoute>
           <Footer />

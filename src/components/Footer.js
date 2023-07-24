@@ -1,8 +1,6 @@
 import "../blocks/Footer.css";
 
 const Footer = () => {
-  console.log("Footer");
-
   return (
     <footer className="footer">
       <div className="footer__info">

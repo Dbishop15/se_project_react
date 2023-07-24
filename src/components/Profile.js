@@ -10,7 +10,7 @@ const Profile = ({
   onSignout,
   currentUser,
   openSideEditModal,
-  loggedIn,
+  isLoggedIn,
   onCardLike,
 }) => {
   return (
@@ -28,7 +28,7 @@ const Profile = ({
           items={items}
           onSelectCard={onSelectCard}
           currentUser={currentUser}
-          loggedIn={loggedIn}
+          isLoggedIn={isLoggedIn}
           onCardLike={onCardLike}
         />
       </div>

@@ -19,14 +19,13 @@ const SideBar = ({ onSignout, openModal, currentUser }) => {
         )}
         <div className="sidebar__user-name">{currentUser.name}</div>
       </div>
-      <div className="sidebar__btn-container">
-        <button className="sidebar__button" onClick={openModal}>
-          Change profile data
-        </button>
-        <button className="sidebar__button" type="button" onClick={onSignout}>
-          Sign Out
-        </button>
-      </div>
+
+      <button className="sidebar__button" onClick={openModal}>
+        Change profile data
+      </button>
+      <button className="sidebar__button" type="button" onClick={onSignout}>
+        Sign Out
+      </button>
     </div>
   );
 };

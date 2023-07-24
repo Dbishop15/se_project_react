@@ -13,7 +13,6 @@ const WeatherCard = ({ day, type, weatherTemp = "" }) => {
 
   const currentTemp = temperature(weatherTemp);
   const currentTempString = currentTemp[currentTemperatureUnit];
-  console.log(temperature);
 
   const imageSrcUrl = imageSrc[0].url || "";
   return (

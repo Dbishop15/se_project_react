@@ -1,9 +1,9 @@
 .profile {
   display: flex;
 }
-.profile__sidebar {
+/* .profile__sidebar {
   width: 229px;
-}
+} */
 .profile__clothes-section {
   margin-left: 116px;
 }
