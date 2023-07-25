@@ -15,10 +15,10 @@ const ItemCard = ({ item, onSelectCard, onCardLike }) => {
     return (
       <button
         className={itemLikeButtonClassName}
-        onClick={() => onCardLike(item._id, isLiked)}
+        onClick={() => onCardLike(item.id || item._id, isLiked)}
       >
         <img
-          className="card__like"
+          className="card__heart"
           src={unliked}
           alt="item card is disliked icon"
         />
@@ -29,9 +29,13 @@ const ItemCard = ({ item, onSelectCard, onCardLike }) => {
     return (
       <button
         className={itemLikeButtonClassName}
-        onClick={() => onCardLike(item._id, isLiked)}
+        onClick={() => onCardLike(item.id || item._id, isLiked)}
       >
-        <img className="card__like" src={liked} alt="item card is liked icon" />
+        <img
+          className="card__heart"
+          src={liked}
+          alt="item card is liked icon"
+        />
       </button>
     );
   };
@@ -45,7 +49,7 @@ const ItemCard = ({ item, onSelectCard, onCardLike }) => {
         src={item.link || item.imageUrl}
         className="card__image"
         alt={item.name}
-        onClick={() => onSelectCard(item, isLiked)}
+        onClick={() => onSelectCard(item)}
       />
     </div>
   );

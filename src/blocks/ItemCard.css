@@ -35,7 +35,8 @@
   cursor: pointer;
   width: 18px;
   height: 15px;
-  background: none;
+  border: none;
+  background: transparent center no-repeat;
 }
 .card__like:hover {
   opacity: 60%;
@@ -47,4 +48,10 @@
 }
 .cards__like_inactive {
   display: none;
+}
+.card__heart {
+  cursor: pointer;
+  width: 18px;
+  height: 15px;
+  background: transparent center no-repeat;
 }

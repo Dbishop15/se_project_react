@@ -31,6 +31,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [token, setToken] = useState("");
   const [noAvatar, setNoAvatar] = useState("");
+
   const history = useHistory();
 
   const handleCreateModal = () => {
@@ -77,16 +78,19 @@ function App() {
   };
 
   const handleLikeClick = (itemId, isLiked) => {
+    console.log(itemId);
+    console.log(isLiked);
     if (!isLiked) {
       api
         .addCardLike({ id: itemId, user: currentUser }, token)
         .then((updatedCard) => {
           console.log(updatedCard);
-          const cardData = updatedCard.data;
 
-          setClothingItems((items) =>
-            items.map((item) => (item.id === itemId ? cardData : item))
-          );
+          setClothingItems((items) => {
+            return items.map((item) =>
+              item.id === itemId ? updatedCard.data : item
+            );
+          });
         })
         .catch((err) => console.log(err));
     } else {
@@ -94,11 +98,12 @@ function App() {
         .removeCardLike({ id: itemId, user: currentUser }, token)
         .then((updatedCard) => {
           console.log(updatedCard);
-          const cardData = updatedCard.data;
 
-          setClothingItems((items) =>
-            items.map((item) => (item.id === itemId ? cardData : item))
-          );
+          setClothingItems((items) => {
+            return items.map((item) =>
+              item.id === itemId ? updatedCard.data : item
+            );
+          });
         })
         .catch((err) => console.log(err));
     }
@@ -231,8 +236,10 @@ function App() {
   }, [token]);
 
   return (
-    <CurrentUserContext.Provider value={{ currentUser, isLoggedIn, noAvatar }}>
-      <div className="page__wrapper">
+    <div className="page__wrapper">
+      <CurrentUserContext.Provider
+        value={{ currentUser, isLoggedIn, noAvatar }}
+      >
         <CurrentTemperatureUnitContext.Provider
           value={{ currentTemperatureUnit, handleToggleSwitchChange }}
         >
@@ -327,8 +334,8 @@ function App() {
             />
           )}
         </CurrentTemperatureUnitContext.Provider>
-      </div>
-    </CurrentUserContext.Provider>
+      </CurrentUserContext.Provider>
+    </div>
   );
 }
 export default App;

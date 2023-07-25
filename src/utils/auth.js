@@ -1,11 +1,5 @@
 import { baseUrl } from "./constants";
-
-const checkResponse = (res) => {
-  if (res.ok) {
-    return res.json();
-  }
-  return Promise.reject(`Error ${res.status}`);
-};
+import { checkResponse } from "./api";
 
 export const signUp = ({ name, avatar, email, password }) => {
   return fetch(`${baseUrl}/signup`, {
@@ -20,9 +14,7 @@ export const signUp = ({ name, avatar, email, password }) => {
       email,
       password,
     }),
-  })
-    .then(checkResponse)
-    .catch((e) => console.error(`Error in auth register: ${e}`));
+  }).then(checkResponse);
 };
 
 export const signIn = ({ email, password }) => {
@@ -36,9 +28,7 @@ export const signIn = ({ email, password }) => {
       email,
       password,
     }),
-  })
-    .then(checkResponse)
-    .catch((e) => console.error(`Error in auth register: ${e}`));
+  }).then(checkResponse);
 };
 
 export const checkToken = (token) => {
@@ -53,6 +43,5 @@ export const checkToken = (token) => {
     .then(checkResponse)
     .then((data) => {
       return data;
-    })
-    .catch((e) => console.error(`Error in auth register: ${e}`));
+    });
 };
