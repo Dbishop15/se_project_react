@@ -1,5 +1,5 @@
 import { Route, useHistory } from "react-router-dom";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../blocks/App.css";
 import Header from "./Header";
 import Main from "./Main";
@@ -31,6 +31,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [token, setToken] = useState("");
   const [noAvatar, setNoAvatar] = useState("");
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const history = useHistory();
 
@@ -58,6 +59,7 @@ function App() {
     if (currentTemperatureUnit === "F") setCurrentTemperatureUnit("C");
   };
   const handleAddItemSubmit = ({ name, imageUrl, weather }) => {
+    setIsLoading(true);
     console.log(token);
     api
       .addItems(
@@ -74,6 +76,9 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 
@@ -85,10 +90,9 @@ function App() {
         .addCardLike({ id: itemId, user: currentUser }, token)
         .then((updatedCard) => {
           console.log(updatedCard);
-
           setClothingItems((items) => {
             return items.map((item) =>
-              item.id === itemId ? updatedCard.data : item
+              item._id === itemId ? updatedCard.data : item
             );
           });
         })
@@ -101,7 +105,7 @@ function App() {
 
           setClothingItems((items) => {
             return items.map((item) =>
-              item.id === itemId ? updatedCard.data : item
+              item._id === itemId ? updatedCard.data : item
             );
           });
         })
@@ -114,7 +118,7 @@ function App() {
       .deleteItems(deleteItem._id, token)
       .then(() => {
         const filteredCards = clothingItems.filter(
-          (card) => deleteItem._id !== card._id
+          (item) => deleteItem._id !== item._id
         );
         setClothingItems(filteredCards);
         handleCloseModal();
@@ -124,6 +128,7 @@ function App() {
       });
   };
   const handleSignUp = ({ email, password, name, avatar }) => {
+    setIsLoading(true);
     auth
       .signUp({ email, password, name, avatar })
       .then((res) => {
@@ -135,10 +140,14 @@ function App() {
           setIsLoggedIn(true);
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   const handleSignIn = ({ email, password }) => {
+    setIsLoading(true);
     auth
       .signIn({ email, password })
       .then((data) => {
@@ -157,7 +166,10 @@ function App() {
         history.push("/profile");
         console.log(isLoggedIn);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
   const handleSignOut = () => {
     localStorage.removeItem("jwt");
@@ -165,17 +177,19 @@ function App() {
     setIsLoggedIn(false);
     setToken("");
     history.push("/");
-    // localStorage.clear();
-    // setLoggedIn(false);
   };
   const handleEditProfile = ({ name, avatar }) => {
+    setIsLoading(true);
     api
       .updateUser(token, { name, avatar })
       .then(() => {
         handleCloseModal();
         setCurrentUser({ ...currentUser, name, avatar });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
   const handleNoAvatar = (name) => {
     const initial = name.slice(0, 1);
@@ -193,14 +207,17 @@ function App() {
   }
 
   useEffect(() => {
-    const closeByEscape = (e) => {
+    if (!activeModal) return;
+    const handleEscClose = (e) => {
       if (e.key === "Escape") {
         handleCloseModal();
       }
     };
-    document.addEventListener("keydown", closeByEscape);
-    return () => document.removeEventListener("keydown", closeByEscape);
-  }, []);
+    document.addEventListener("keydown", handleEscClose);
+    return () => {
+      document.removeEventListener("keydown", handleEscClose);
+    };
+  }, [activeModal]);
 
   useEffect(() => {
     getForecastWeather()
@@ -293,6 +310,7 @@ function App() {
               onSelectCard={handleSelectedCard}
               onClose={handleCloseModal}
               buttonText="Add garment"
+              isLoading={isLoading}
             />
           )}
           {activeModal === "preview" && (
@@ -313,6 +331,7 @@ function App() {
               buttonText="Next"
               altButtonText="or Login"
               altClick={handleAltClick}
+              isLoading={isLoading}
             />
           )}
           {activeModal === "signin" && (
@@ -323,6 +342,7 @@ function App() {
               buttonText="Log In"
               altButtonText="or Register"
               altClick={handleAltClick}
+              isLoading={isLoading}
             />
           )}
           {activeModal === "editprofile" && (
@@ -331,6 +351,7 @@ function App() {
               onEditProfile={handleEditProfile}
               handleCloseModal={handleCloseModal}
               buttonText="save"
+              isLoading={isLoading}
             />
           )}
         </CurrentTemperatureUnitContext.Provider>

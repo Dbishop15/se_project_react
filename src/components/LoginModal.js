@@ -5,7 +5,7 @@ const LoginModal = ({
   isOpen,
   onSignIn,
   handleCloseModal,
-  buttonText,
+  isLoading,
   altButtonText,
   altClick,
 }) => {
@@ -36,7 +36,7 @@ const LoginModal = ({
       name="login"
       onClose={handleCloseModal}
       isOpen={isOpen}
-      buttonText={buttonText}
+      buttonText={isLoading ? "Logging in..." : "Log In"}
       altButtonText={altButtonText}
       handleAltClick={altClick}
       onSubmit={handleSubmit}

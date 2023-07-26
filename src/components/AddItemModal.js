@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ModalWithForm from "./ModalWithForm";
 
-const AddItemModal = ({ isOpen, onAddItem, handleCloseModal, buttonText }) => {
+const AddItemModal = ({ isOpen, onAddItem, handleCloseModal, isLoading }) => {
   const [name, setName] = useState("");
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -41,7 +41,7 @@ const AddItemModal = ({ isOpen, onAddItem, handleCloseModal, buttonText }) => {
       onClose={handleCloseModal}
       isOpen={isOpen}
       onSubmit={handleSubmit}
-      buttonText={buttonText}
+      buttonText={isLoading ? "Saving..." : "Save"}
     >
       <label className="modal__label" id="name-label">
         Name

@@ -6,7 +6,7 @@ const EditProfileModal = ({
   isOpen,
   onEditProfile,
   handleCloseModal,
-  buttonText,
+  isLoading,
 }) => {
   const { currentUser } = useContext(CurrentUserContext);
   const [name, setName] = useState("");
@@ -36,7 +36,7 @@ const EditProfileModal = ({
       name="edit-profile"
       onClose={handleCloseModal}
       isOpen={isOpen}
-      buttonText={buttonText}
+      buttonText={isLoading ? "Saving..." : "Save"}
       onSubmit={handleSubmit}
     >
       <label className="modal__label" id="name-label">

@@ -5,7 +5,7 @@ const RegisterModal = ({
   isOpen,
   onSignUp,
   handleCloseModal,
-  buttonText,
+  isLoading,
   altButtonText,
   altClick,
 }) => {
@@ -50,7 +50,7 @@ const RegisterModal = ({
       name="singUp"
       onClose={handleCloseModal}
       isOpen={isOpen}
-      buttonText={buttonText}
+      buttonText={isLoading ? "Next..." : "Next"}
       altButtonText={altButtonText}
       handleAltClick={altClick}
       onSubmit={handleSubmit}
