@@ -18,7 +18,10 @@ export const currentDate = new Date().toLocaleString("default", {
   month: "long",
   day: "numeric",
 });
-export const baseUrl = "http://localhost:3001";
+export const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "wtwr.twilightparadox.com"
+    : "http://localhost:3001";
 
 export const weatherOptions = [
   { url: daysunny, day: true, type: "sunny" },
