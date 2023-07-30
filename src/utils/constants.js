@@ -20,7 +20,7 @@ export const currentDate = new Date().toLocaleString("default", {
 });
 export const baseUrl =
   process.env.NODE_ENV === "production"
-    ? "wtwr.twilightparadox.com"
+    ? "https://wtwr.twilightparadox.com"
     : "http://localhost:3001";
 
 export const weatherOptions = [
