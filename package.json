@@ -21,7 +21,8 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
-    "eject": "react-scripts-rewired eject"
+    "eject": "react-scripts-rewired eject",
+    "deploy": "npm run build && scp -r ./build/* dararat246@wtwr.twilightparadox.com:/home/dararat246/frontend"
   },
   "eslintConfig": {
     "extends": [
