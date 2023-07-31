@@ -18,6 +18,7 @@ export const currentDate = new Date().toLocaleString("default", {
   month: "long",
   day: "numeric",
 });
+
 export const baseUrl =
   process.env.NODE_ENV === "production"
     ? "https://api.wtwr.twilightparadox.com"

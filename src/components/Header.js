@@ -13,6 +13,7 @@ const Header = ({
   currentUser,
 }) => {
   const { name, avatar } = currentUser;
+
   const renderUserAvatar = () => {
     if (avatar) {
       return (
@@ -25,6 +26,7 @@ const Header = ({
       return null;
     }
   };
+
   const renderAuthenticateContent = () => {
     return (
       <>
@@ -63,6 +65,7 @@ const Header = ({
       </>
     );
   };
+
   return (
     <header className="header">
       <div className="header__container">
@@ -84,4 +87,5 @@ const Header = ({
     </header>
   );
 };
+
 export default Header;

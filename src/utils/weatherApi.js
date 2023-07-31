@@ -17,4 +17,5 @@ export const temperature = (temp) => ({
   F: ` ${Math.round(temp)}°F`,
   C: ` ${Math.round(((temp - 32) * 5) / 9)}°C`,
 });
+
 export { getForecastWeather, filterDataFromWeatherAPI };

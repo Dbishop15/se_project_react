@@ -11,6 +11,7 @@ const ItemCard = ({ item, onSelectCard, onCardLike }) => {
   const itemLikeButtonClassName = `card__like ${
     currentUser ? "cards__like_active" : "cards__like_inactive"
   }`;
+
   const renderNotLiked = () => {
     return (
       <button
@@ -25,6 +26,7 @@ const ItemCard = ({ item, onSelectCard, onCardLike }) => {
       </button>
     );
   };
+
   const renderLiked = () => {
     return (
       <button
@@ -39,6 +41,7 @@ const ItemCard = ({ item, onSelectCard, onCardLike }) => {
       </button>
     );
   };
+
   return (
     <div key={item._id || item.id} className="card__item">
       <div className="card__item-info">

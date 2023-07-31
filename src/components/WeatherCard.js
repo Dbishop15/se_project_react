@@ -22,4 +22,5 @@ const WeatherCard = ({ day, type, weatherTemp = "" }) => {
     </section>
   );
 };
+
 export default WeatherCard;

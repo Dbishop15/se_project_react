@@ -5,6 +5,7 @@ import "../blocks/SideBar.css";
 
 const SideBar = ({ onSignout, openModal, currentUser }) => {
   const { noAvatar } = useContext(CurrentUserContext);
+
   return (
     <div className="sidebar">
       <div className="sidebar__profile">

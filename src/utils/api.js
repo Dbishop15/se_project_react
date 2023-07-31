@@ -29,6 +29,7 @@ export const addItems = ({ name, imageUrl, weather }, token) => {
     }),
   }).then(checkResponse);
 };
+
 export const addCardLike = ({ id, user }, token) => {
   return fetch(`${baseUrl}/items/${id}/likes`, {
     method: "PUT",
@@ -39,6 +40,7 @@ export const addCardLike = ({ id, user }, token) => {
     body: JSON.stringify({ id, user }),
   }).then(checkResponse);
 };
+
 export const removeCardLike = ({ id, user }, token) => {
   return fetch(`${baseUrl}/items/${id}/likes`, {
     method: "DELETE",
@@ -59,6 +61,7 @@ export const deleteItems = (_id, token) => {
     },
   }).then(checkResponse);
 };
+
 export const updateUser = (token, { name, avatar }) => {
   return fetch(`${baseUrl}/users/me`, {
     method: "PATCH",

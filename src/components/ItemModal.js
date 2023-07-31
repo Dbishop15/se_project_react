@@ -10,6 +10,7 @@ const ItemModal = ({ selectedCard, onClose, name, onDelete }) => {
   const itemDeleteButtonClassName = `modal__delete-btn ${
     isOwn ? "modal__delete-btn_visible" : "modal__delete-btn_hidden"
   }`;
+
   return (
     <div className={`modal modal_type_${name}`}>
       <div className="modal__container-itemPreview">

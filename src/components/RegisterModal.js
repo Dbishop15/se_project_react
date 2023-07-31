@@ -14,16 +14,19 @@ const RegisterModal = ({
     console.log(e.target.value);
     setEmail(e.target.value);
   };
+
   const [password, setPassword] = useState("");
   const handlePasswordChange = (e) => {
     console.log(e.target.value);
     setPassword(e.target.value);
   };
+
   const [name, setName] = useState("");
   const handleNameChange = (e) => {
     console.log(e.target.value);
     setName(e.target.value);
   };
+
   const [avatar, setAvatar] = useState("");
   const handleAvatarChange = (e) => {
     console.log(e.target.value);
