@@ -10,6 +10,7 @@ export function checkResponse(res) {
 export const getItems = () => {
   return fetch(`${baseUrl}/items`, {
     headers: {
+      Accept: "application/json",
       "Content-Type": "application/json",
     },
   }).then(checkResponse);
@@ -19,6 +20,7 @@ export const addItems = ({ name, imageUrl, weather }, token) => {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
+      Accept: "application/json",
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
@@ -34,6 +36,7 @@ export const addCardLike = ({ id, user }, token) => {
   return fetch(`${baseUrl}/items/${id}/likes`, {
     method: "PUT",
     headers: {
+      Accept: "application/json",
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
@@ -45,6 +48,7 @@ export const removeCardLike = ({ id, user }, token) => {
   return fetch(`${baseUrl}/items/${id}/likes`, {
     method: "DELETE",
     headers: {
+      Accept: "application/json",
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
@@ -56,6 +60,7 @@ export const deleteItems = (_id, token) => {
   return fetch(`${baseUrl}/items/${_id}`, {
     method: "DELETE",
     headers: {
+      Accept: "application/json",
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
